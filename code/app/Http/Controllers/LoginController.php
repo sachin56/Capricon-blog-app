@@ -7,10 +7,17 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-   public function index(){
-        return view('auth.login');
-   }
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
+    //return login view 
+    public function index(){
+            return view('auth.login');
+    }
+
+   
    function checklogin(Request $request)
     {
         $this->validate($request, [
@@ -24,7 +31,7 @@ class LoginController extends Controller
         );
 
         if(Auth::attempt($user_data)){
-            return redirect('/welcome');
+            return redirect('/home');
         }else{
             return back()->with('error', 'Wrong Login Details');
         }

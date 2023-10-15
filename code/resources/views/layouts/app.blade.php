@@ -25,7 +25,7 @@
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            {{-- <a href="{{ route('dashboard') }}"><b>Dashboard</b></a> --}}
+            <a href="{{ route('dashboard') }}"><b>Dashboard</b></a>
         </div>
         <!-- /.login-logo -->
             @yield('content')
