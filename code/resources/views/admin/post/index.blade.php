@@ -11,7 +11,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form id="myForm_attachment" enctype="multipart/form-data">
                             <input type="hidden" id="hid" name="hid">
                             <div class="row">
                                 <div class="form-group col-md-12">
@@ -32,7 +32,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Post Description</label>
+                                    <label for="">Post Description</label>
                                     <textarea type="text" class="form-control" id="content" name="content" placeholder="Enter Post Description" required></textarea>
                                 </div>
                             </div>
@@ -69,10 +69,14 @@
                             <table class="table table-bordered" id="category">
                                 <thead>
                                     <tr>
-                                        <th style="width:10%">ID</th>
-                                        <th style="width:20%">Name</th>
-                                        <th style="width:20%">Description</th>
-                                        <th style="width:20%">Action</th>
+                                        <th style="width: 10px">#</th>
+                                        <th>Image</th>
+                                        <th>Title</th>
+                                        <th>Category</th>
+                                        <th>Tags</th>
+                                        <th>Author</th>
+                                        <th style="width: 130px">Created Date</th>
+                                        <th style="width: 40px">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -132,41 +136,53 @@
                 var hid = $("#hid").val();
                 //save category
                 if(hid == ""){
-                    var name =$("#name").val();
-                    var description =$("#description").val();
 
-                    $.ajax({
-                        'type': 'ajax',
-                        'dataType': 'json',
-                        'method': 'post',
-                        'data' : {name:name,description:description},
-                        'url' : 'category',
-                        'async': false,
-                        success:function(data){
-                            if(data.validation_error){
-                                validation_error(data.validation_error);//if has validation error call this function
-                            }
+                    var formData = new FormData($('#myForm_attachment')[0]);
+                    Swal.fire({
+                        title: 'Are you sure?',
+                        text: "You won't be able to revert this!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes, Update it!'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    $.ajax({
+                                        'type': 'ajax',
+                                        'dataType': 'json',
+                                        'method': 'post',
+                                        'data' : formData,
+                                        'url' : 'post',
+                                        'processData': false,
+                                        'contentType': false,
+                                        success:function(data){
+                                            if(data.validation_error){
+                                                validation_error(data.validation_error);//if has validation error call this function
+                                            }
 
-                            if(data.db_error){
-                                db_error(data.db_error);
-                            }
+                                            if(data.db_error){
+                                                db_error(data.db_error);
+                                            }
 
-                            if(data.db_success){
-                                toastr.success(data.db_success);
-                                setTimeout(function(){
-                                    $("#modal").modal('hide');
-                                    location.reload();
-                                }, 2000);
-                            }
+                                            if(data.db_success){
+                                                toastr.success(data.db_success);
+                                                setTimeout(function(){
+                                                    $("#modal").modal('hide');
+                                                    location.reload();
+                                                }, 2000);
+                                            }
 
-                        },
-                        error: function(jqXHR, exception) {
-                            db_error(jqXHR.responseText);
-                        }
+                                        },
+                                        error: function(jqXHR, exception) {
+                                            db_error(jqXHR.responseText);
+                                        }
+                                    });
+                                }  
+                            });  
+                        };
                     });
-                };
-            });
-        });
+                });
 
         //edit category
         $(document).on("click", ".edit", function(){
@@ -185,12 +201,13 @@
                 'type': 'ajax',
                 'dataType': 'json',
                 'method': 'get',
-                'url': 'category/'+id,
+                'url': 'post/'+id,
                 'async': false,
                 success: function(data){
                     $("#hid").val(data.id);
-                    $("#name").val(data.name);
-                    $("#description").val(data.description);
+                    $("#title").val(data.title);
+                    $("#content").summernote('code',data.content);
+                    $("#category_id").selectpicker("val",data.category_id);
                 }
             });
 
@@ -198,9 +215,8 @@
 
                 if($("#hid").val() != ""){
 
-                    var id = $("#hid").val();
-                    var name = $("#name").val();
-                    var description = $("#description").val();
+                    var formData = new FormData($('#myForm_attachment')[0]);
+
                     Swal.fire({
                         title: 'Are you sure?',
                         text: "You won't be able to revert this!",
@@ -215,10 +231,11 @@
                                 $.ajax({
                                     'type': 'ajax',
                                     'dataType': 'json',
-                                    'method': 'put',
-                                    'data' : {name:name,description:description},
-                                    'url': 'category/'+id,
-                                    'async': false,
+                                    'method': 'post',
+                                    'data' : formData,
+                                    'url': 'post/'+id,
+                                    'processData': false,
+                                    'contentType': false,
                                     success:function(data){
                                         if(data.validation_error){
                                             validation_error(data.validation_error);//if has validation error call this function
@@ -296,12 +313,13 @@
             "bLengthChange": false,
             'ajax': {
                         'method': 'get',
-                        'url': 'category/create'
+                        'url': 'post/create'
             },
             'columns': [
                 {data: 'id'},
-                {data: 'name'},
-                {data: 'description'},
+                {data: 'title'},
+                {data: 'content'},
+                {data: 'published_at'},
 
                 {
                 data: null,

@@ -37,6 +37,10 @@ Route::get('/dashboard',[DashboardController::class ,'index'])->name('dashboard'
 
 //post routes
 Route::get('/post',[PostController::class ,'index'])->name('post');
+Route::post('/post',[PostController::class ,'store']);
+Route::get('/post/create',[PostController::class ,'create']);
+Route::get('/post/{id}',[PostController::class ,'show']);
+Route::post('/post/{id}',[PostController::class ,'update']);
 
 //post routes
 Route::get('/category',[CategoryController::class ,'index'])->name('category');
