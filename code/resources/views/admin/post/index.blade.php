@@ -73,7 +73,6 @@
                                         <th>Image</th>
                                         <th>Title</th>
                                         <th>Category</th>
-                                        <th>Tags</th>
                                         <th>Author</th>
                                         <th style="width: 130px">Created Date</th>
                                         <th style="width: 40px">Action</th>
@@ -318,7 +317,9 @@
             'columns': [
                 {data: 'id'},
                 {data: 'title'},
+                {data: 'name'},
                 {data: 'content'},
+                {data: 'name'},
                 {data: 'published_at'},
 
                 {

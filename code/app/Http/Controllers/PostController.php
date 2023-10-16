@@ -8,7 +8,7 @@ use App\Models\post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
-use DataTable;
+use DataTables;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 
@@ -33,7 +33,14 @@ class PostController extends Controller
     public function create(){
         $result = post::all();
 
-        return DataTables($result)->make(true);
+        return DataTables::of($result)
+                        ->addColumn('name', function(post $post){
+                            return $post->category->name;
+                        })
+                        ->addColumn('name', function(post $post){
+                            return $post->user->name;
+                        })
+                        ->make(true);
     }
 
     /**
@@ -103,12 +110,11 @@ class PostController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request){
         $validator = Validator::make($request->all(), [
-            'title' => 'required|unique:posts,title',
+            'title' => 'required|unique:posts,title',$request->id,
             'content' => 'required',
             'category_id' => 'required',
         ]);
