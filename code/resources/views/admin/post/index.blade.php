@@ -66,7 +66,7 @@
                             <button class="btn btn-primary addNew"><i class="fa fa-plus"></i> Add New Post</button>
                         </div>
                         <div class="card-body">
-                            <table class="table table-bordered" id="category">
+                            <table class="table table-striped nowrap" id="category">
                                 <thead>
                                     <tr>
                                         <th style="width: 10px">#</th>

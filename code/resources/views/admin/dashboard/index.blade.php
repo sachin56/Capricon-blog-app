@@ -78,7 +78,7 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                      <table class="table table-bordered" id="category">
+                      <table class="table table-striped nowrap" id="category">
                           <thead>
                               <tr>
                                   <th style="width: 10px">#</th>

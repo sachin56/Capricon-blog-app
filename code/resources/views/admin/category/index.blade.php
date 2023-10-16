@@ -53,7 +53,7 @@
                             <button class="btn btn-primary addNew"><i class="fa fa-plus"></i> Add New Category</button>
                         </div>
                         <div class="card-body">
-                            <table class="table table-bordered" id="category">
+                            <table class="table table-striped nowrap" id="category">
                                 <thead>
                                     <tr>
                                         <th style="width:10%">ID</th>
@@ -168,7 +168,7 @@
                 'async': false,
                 success: function(data){
                     $("#hid").val(data.id);
-                    $("#name").val(data.name);
+                    $("#name").val(data.category_name);
                     $("#description").val(data.description);
                 }
             });

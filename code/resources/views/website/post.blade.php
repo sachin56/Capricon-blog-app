@@ -269,7 +269,7 @@
             <div class="col-md-5 order-md-2">
                 @foreach($lastRelatedPost as $post)
                 <a href="single.html" class="hentry img-1 h-100 gradient"
-                    style="background-image: url('storage/post/{{ $post->image }}');">
+                    style="background-image: url('/storage/post/{{ $post->image }}');">
                     <span class="post-category text-white bg-danger">{{ $post->category->category_name }}</span>
                     <div class="text">
                         <h2>{{ $post->title }}</h2>
