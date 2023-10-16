@@ -279,7 +279,7 @@
             },
             'columns': [
                 {data: 'id'},
-                {data: 'name'},
+                {data: 'category_name'},
                 {data: 'description'},
 
                 {

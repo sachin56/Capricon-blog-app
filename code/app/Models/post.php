@@ -22,10 +22,7 @@ class post extends Model
         return $this->belongsTo(user::class,'user_id','id');
     }
 
-    public function tags()
-    {
-        return $this->belongsToMany('App\Tag');
-    }
+
 
     public function category(){
 

@@ -1,4 +1,5 @@
 @extends('layouts.website')
+
 @section('content')
     <div class="py-5 bg-light">
       <div class="container">
@@ -20,9 +21,9 @@
           @foreach($posts as $post)
           <div class="col-lg-4 mb-4">
             <div class="entry2">
-              <a href="{{ route('website.post', ['slug' => $post->slug]) }}"><img src="{{ $post->image }}" alt="Image" class="img-fluid rounded"></a>
+              <a href="{{ route('website.post', ['slug' => $post->slug]) }}"><img src="/storage/post/{{ $post->image }}" alt="Image" class="img-fluid rounded"></a>
               <div class="excerpt">
-              <span class="post-category text-white bg-secondary mb-3">{{ $post->category->name}}</span>
+              <span class="post-category text-white bg-secondary mb-3">{{ $post->category->category_name}}</span>
 
               <h2><a href="{{ route('website.post', ['slug' => $post->slug]) }}">{{ $post->title }}</a></h2>
               <div class="post-meta align-items-center text-left clearfix">

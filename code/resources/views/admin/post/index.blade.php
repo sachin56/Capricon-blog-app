@@ -27,7 +27,7 @@
                                     <select name="category_id" id="category_id" class="form-control">
                                         <option value="" style="display: none" selected>Select Category</option>
                                         @foreach($result as $category)
-                                            <option value="{{ $category->id }}"> {{ $category->name }} </option>
+                                            <option value="{{ $category->id }}"> {{ $category->category_name }} </option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -74,8 +74,8 @@
                                         <th>Title</th>
                                         <th>Category</th>
                                         <th>Author</th>
-                                        <th style="width: 130px">Created Date</th>
-                                        <th style="width: 40px">Action</th>
+                                        <th>Created Date</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -300,7 +300,7 @@
         });
     });
 
-    //Data Table show
+    //Data Table 
     function category(){
         
         $('#category').DataTable().clear();
@@ -316,9 +316,12 @@
             },
             'columns': [
                 {data: 'id'},
+                { data: 'image' ,
+                    "render": function ( data) {
+                    return '<img src="/storage/post/'+data+'" width="40px">';}
+                },
                 {data: 'title'},
-                {data: 'name'},
-                {data: 'content'},
+                {data: 'category_name'},
                 {data: 'name'},
                 {data: 'published_at'},
 
@@ -328,6 +331,7 @@
                     var html = "";
                     html+="<td><button class='btn btn-warning btn-sm edit' data='"+d.id+"' title='Edit'><i class='fas fa-edit'></i></button>";
                     html+="&nbsp;<button class='btn btn-danger btn-sm delete' data='"+d.id+"' title='Delete'><i class='fas fa-trash'></i></button>";
+                    html+="&nbsp;<a href='post/"+d.slug+"' target='_blank' class='btn btn-sm btn-dark mr-1'> <i class='fas fa-link'></i> </a>"
                     return html;
 
                 }

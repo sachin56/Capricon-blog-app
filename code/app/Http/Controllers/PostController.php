@@ -34,8 +34,8 @@ class PostController extends Controller
         $result = post::all();
 
         return DataTables::of($result)
-                        ->addColumn('name', function(post $post){
-                            return $post->category->name;
+                        ->addColumn('category_name', function(post $post){
+                            return $post->category->category_name;
                         })
                         ->addColumn('name', function(post $post){
                             return $post->user->name;

@@ -52,14 +52,14 @@ class CategoryController extends Controller
                 DB::beginTransaction();
 
                 $result = new category();
-                $result->name = $request->name;
+                $result->category_name = $request->name;
                 $result->slug = Str::slug($request->name, '-');
                 $result->description = $request->description;
 
                 $result->save();
                 
                 DB::commit();
-                return response()->json(['success' =>'Category Added']);
+                return response()->json(['db_success' =>'Category Added']);
 
             }catch(\Throwable $th){
                 DB::rollback();
@@ -72,7 +72,7 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Post  $post
+     * @param  \App\Post  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id){
@@ -102,14 +102,14 @@ class CategoryController extends Controller
                 DB::beginTransaction();
 
                 $result = category::find($request->id);
-                $result->name = $request->name;
+                $result->category_name = $request->name;
                 $result->slug = Str::slug($request->name, '-');
                 $result->description = $request->description;
 
                 $result->save();
                 
                 DB::commit();
-                return response()->json(['success' =>'Updatede Category']);
+                return response()->json(['db_success' =>'Updatede Category']);
 
             }catch(\Throwable $th){
                 DB::rollback();
@@ -123,7 +123,7 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Post  $post
+     * @param  \App\Post  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id){

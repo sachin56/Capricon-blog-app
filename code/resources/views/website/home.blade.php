@@ -6,7 +6,7 @@
             <div class="col-md-4">
                 @foreach($firstPosts2 as $post)
                 <a href="{{ route('website.post', ['slug' => $post->slug]) }}" class="h-entry mb-30 v-height gradient"
-                    style="background-image: url('{{ $post->image }}');">
+                    style="background-image: url('storage/post/{{ $post->image }}');">
 
                     <div class="text">
                         <h2>{{ $post->title }}</h2>
@@ -18,10 +18,10 @@
             <div class="col-md-4">
                 @foreach($middlePost as $post)
                 <a href="{{ route('website.post', ['slug' => $post->slug]) }}" class="h-entry img-5 h-100 gradient"
-                    style="background-image: url('{{ $post->image }}'">
+                    style="background-image: url('storage/post/{{ $post->image }}'">
                     <div class="text">
                         <div class="post-categories mb-3">
-                            <span class="post-category bg-danger">{{ $post->category->name }}</span>
+                            <span class="post-category bg-danger">{{ $post->category->category_name }}</span>
                         </div>
                         <h2>{{ $post->title }}</h2>
                         <span class="date">{{ $post->created_at->format('M d, Y')}}</span>
@@ -32,7 +32,7 @@
             <div class="col-md-4">
                 @foreach($lastPosts as $post)
                 <a href="{{ route('website.post', ['slug' => $post->slug]) }}" class="h-entry mb-30 v-height gradient"
-                    style="background-image: url('{{ $post->image }}');">
+                    style="background-image: url('storage/post/{{ $post->image }}');">
                     <div class="text">
                         <h2>{{ $post->title }}</h2>
                         <span class="date">{{ $post->created_at->format('M d, Y')}}</span>
@@ -55,7 +55,7 @@
             @foreach($recentPosts as $post)
             <div class="col-lg-4 mb-4">
                 <div class="entry2">
-                    <a href="{{ route('website.post', ['slug' => $post->slug]) }}"><img src="{{ $post->image }}"
+                    <a href="{{ route('website.post', ['slug' => $post->slug]) }}"><img src="/storage/post/{{ $post->image }}"
                             alt="Image" class="img-fluid rounded"></a>
                     <div class="excerpt">
                         <span class="post-category text-white bg-secondary mb-3">{{ $post->category->name }}</span>
