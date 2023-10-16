@@ -27,7 +27,7 @@
               <!-- small box -->
               <div class="small-box bg-info">
                 <div class="inner">
-                  <h3>{{ $postCount }}</h3>
+                  {{-- <h3>{{ $postCount }}</h3> --}}
 
                   <p>Posts</p>
                 </div>
@@ -41,7 +41,7 @@
               <!-- small box -->
               <div class="small-box bg-success">
                 <div class="inner">
-                  <h3>{{ $categoryCount }}</h3>
+                  {{-- <h3>{{ $categoryCount }}</h3> --}}
 
                   <p>Categories</p>
                 </div>
@@ -55,7 +55,7 @@
               <!-- small box -->
               <div class="small-box bg-warning">
                 <div class="inner">
-                  <h3>{{ $tagCount }}</h3>
+                  {{-- <h3>{{ $tagCount }}</h3> --}}
 
                   <p>Tags</p>
                 </div>
@@ -69,7 +69,7 @@
               <!-- small box -->
               <div class="small-box bg-danger">
                 <div class="inner">
-                  <h3>{{ $userCount }}</h3>
+                  {{-- <h3>{{ $userCount }}</h3> --}}
 
                   <p>Users</p>
                 </div>
@@ -86,7 +86,7 @@
                     <div class="card-header">
                         <div class="d-flex justify-content-between align-items-center">
                             <h3 class="card-title">Post List</h3>
-                            <a href="{{ route('post.index') }}" class="btn btn-primary">Post List</a>
+                            {{-- <a href="{{ route('post.index') }}" class="btn btn-primary">Post List</a> --}}
                         </div>
                     </div>
                     <!-- /.card-header -->
@@ -105,7 +105,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @if($posts->count())
+                                {{-- @if($posts->count())
                                 @foreach ($posts as $post)
                                     <tr>
                                         <td>{{ $post->id }}</td>
@@ -140,7 +140,7 @@
                                             <h5 class="text-center">No posts found.</h5>
                                         </td>
                                     </tr>
-                                @endif
+                                @endif --}}
                             </tbody>
                         </table>
                     </div>

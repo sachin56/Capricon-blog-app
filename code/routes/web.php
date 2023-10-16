@@ -2,7 +2,10 @@
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,18 +19,31 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/welcome', function () {
-    return view('welcome');
-});
 
 Route::get('/home',[HomeController::class ,'index']);
 
 Route::get('/dashboard',[HomeController::class ,'index'])->name('dashboard');
 
 //Login routes
-Route::get('/login',[LoginController::class ,'index']);
+Route::get('/login',[LoginController::class ,'index'])->name('login');
 Route::post('/login',[LoginController::class ,'checklogin']);
 
 //Register routes
 Route::get('/register',[RegisterController::class ,'index']);
 Route::post('/register',[RegisterController::class ,'store']);
+
+//dashboard routes
+Route::get('/dashboard',[DashboardController::class ,'index'])->name('dashboard');
+
+//post routes
+Route::get('/post',[PostController::class ,'index'])->name('post');
+
+//post routes
+Route::get('/category',[CategoryController::class ,'index'])->name('category');
+Route::post('/category',[CategoryController::class ,'store']);
+Route::get('/category/create',[CategoryController::class ,'create']);
+Route::get('/category/{id}',[CategoryController::class ,'show']);
+Route::put('/category/{id}',[CategoryController::class ,'update']);
+Route::delete('/category/{id}',[CategoryController::class ,'destroy']);
+
+
