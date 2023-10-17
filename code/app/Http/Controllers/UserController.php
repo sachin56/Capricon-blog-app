@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use App\Models\u_role;
+use App\Models\u_user_role;
 use DataTable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -16,7 +18,8 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        return view('admin.user.index');
+        $role = u_role::all();
+        return view('admin.user.index')->with(['roles' => $role]);
     }
 
     /**
@@ -38,7 +41,9 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id){
-        $result =  User::find($id);
+        $result['users'] = User::find($id);
+
+        $result['u_user_roles'] = u_user_role::select('role_id')->where(['user_id' => $id])->get();
 
         return response()->json($result);
     }
@@ -47,7 +52,6 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request){
@@ -64,9 +68,23 @@ class UserController extends Controller
 
                 $result = User::find($request->id);
                 $result->name = $request->name;
-                $result->password = Hash::make($request->password);
 
                 $result->save();
+
+                $this->delete_roles( $result->id);
+
+                $roles =$request->role_id;
+                $users = $result->id;
+
+                foreach( $roles as $role){
+
+                    $user_role = new u_user_role;
+                    $user_role->user_id = $users;
+                    $user_role->role_id = $role;
+
+                    $user_role->save();
+
+                }
                 
                 DB::commit();
                 return response()->json(['db_success' =>'Update User']);
@@ -92,5 +110,9 @@ class UserController extends Controller
 
         return response()->json($result);
     }
+
+    public function delete_roles($id){
+        u_user_role::where(['user_id' => $id])->delete();
+     }
 
 }

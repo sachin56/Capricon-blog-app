@@ -8,6 +8,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WebsiteController;
+use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -62,4 +63,12 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/user/{id}',[UserController::class ,'show']);
     Route::put('/user/{id}',[UserController::class ,'update']);
     Route::delete('/user/{id}',[UserController::class ,'destroy']);
+
+    //user-Roles
+    Route::get('/role',[RoleController::class,'index'])->name('roles');
+    Route::get('/role/create',[RoleController::class,'create']);
+    Route::post('/role',[RoleController::class,'store']);
+    Route::get('/role/{id}',[RoleController::class,'show']);
+    Route::put('/role/{id}',[RoleController::class,'update']);
+    Route::delete('/role/{id}',[RoleController::class,'destroy']);
 });

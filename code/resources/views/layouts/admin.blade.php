@@ -1,3 +1,4 @@
+<?php $roles=App\Http\Controllers\RoleController::getroles(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +23,6 @@
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
   <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
 
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/js/bootstrap-datepicker.min.js"></script>
 
   <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
@@ -45,6 +45,8 @@
   <!-- include summernote css/js -->
   <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+
+
 
   
   @yield('style')
@@ -91,10 +93,12 @@
       </div>
 
       <!-- Sidebar Menu -->
+    
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+          @if ($roles->contains('role_id',1))     
           <li class="nav-item">
             <a href="{{ route('dashboard') }}" class="nav-link {{ (request()->is('admin/dashboard')) ? 'active': '' }}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -103,6 +107,8 @@
               </p>
             </a>
           </li>
+          @endif
+          @if ($roles->contains('role_id',2))  
           <li class="nav-item mt-auto">
             <a href="{{ route('category') }}" class="nav-link {{ (request()->is('admin/category*')) ? 'active': '' }}">
               <i class="nav-icon fas fa-tags"></i>
@@ -111,6 +117,8 @@
               </p>
             </a>                    
           </li>
+          @endif
+          @if ($roles->contains('role_id',3))  
           <li class="nav-item mt-auto">
             <a href="{{ route('post') }}" class="nav-link {{ (request()->is('admin/post*')) ? 'active': '' }}">
               <i class="nav-icon fas fa-pen-square"></i>
@@ -119,6 +127,8 @@
               </p>
             </a>                    
           </li>
+          @endif
+          @if ($roles->contains('role_id',1))
           <li class="nav-item mt-auto">
             <a href="" class="nav-link {{ (request()->is('admin/contact*')) ? 'active': '' }}">
               <i class="nav-icon fas fa-envelope"></i>
@@ -127,6 +137,8 @@
               </p>
             </a>                    
           </li>
+          @endif
+          @if ($roles->contains('role_id',4))  
           <li class="nav-item mt-auto">
             <a href="{{ route('user') }}" class="nav-link {{ (request()->is('admin/user*')) ? 'active': '' }}">
               <i class="nav-icon fas fa-user"></i>
@@ -135,14 +147,17 @@
               </p>
             </a>
           </li>
+    
           <li class="nav-item mt-auto">
-            <a href="" class="nav-link {{ (request()->is('admin/setting')) ? 'active': '' }}">
+            <a href="{{ route('roles') }}" class="nav-link {{ (request()->is('admin/setting')) ? 'active': '' }}">
               <i class="nav-icon fas fa-cog"></i>
               <p>
-                Setting
+                Roles
               </p>
             </a>
           </li>
+          @endif
+         
           <li class="nav-header">Your Account</li>
           <li class="nav-item mt-auto">
             <a href="" class="nav-link {{ (request()->is('admin/profile')) ? 'active': '' }}">
@@ -215,7 +230,13 @@
     bsCustomFileInput.init()
   })
 </script>
-        
+
+<!-- Scripts, remove defer from app.js, move selec2.min.js & select2.min.css here -->
+<script src="{{ asset('js/app.js') }}"></script>  
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.min.js" integrity="sha512-kdpGWY5wS6yTcqKxo6c14+4nk99hWFTwQ5XtSyELJxVwpWH23MN80iTVzkMg1jv3FZbdKPbFWLr98AA03/zPuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/google-palette/1.1.0/palette.js" integrity="sha512-C8lBe+d5Peg8kU+0fyU+JfoDIf0kP1rQBuPwRSBNHqqvqaPu+rkjlY0zPPAqdJOLSFlVI+Wku32S7La7eFhvlA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     

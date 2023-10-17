@@ -22,9 +22,15 @@
                                     <label for="rate">Email</label>
                                     <input type="text" class="form-control" id="email" name="email" placeholder="Enter Title" readonly>
                                 </div>
-                                <div class="form-group">
-                                    <label for="">Password</label>
-                                    <input type="text" class="form-control" id="password" name="password" placeholder="Enter Post Description" required>
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <label>Roles</label>
+                                        <select class="select2" multiple="multiple" style="width: 100%;" id="role_id" name="role_id">
+                                            @foreach($roles as $role)
+                                                <option value="{{ $role->id }}">{{ $role->description }}</option>
+                                            @endforeach
+                                        </select>
+                                      </div>
                                 </div>
                             </div>
                         </form>
@@ -89,7 +95,8 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-
+        $('.select2').select2();
+        
         //table call
         category();
 
@@ -117,10 +124,17 @@
                 'url': 'user/'+id,
                 'async': false,
                 success: function(data){
-                    $("#hid").val(data.id);
-                    $("#name").val(data.name);
-                    $("#email").val(data.email);
-                    $("#password").val(data.password);
+                    $("#hid").val(data.users.id);
+                    $("#name").val(data.users.name);
+                    $("#email").val(data.users.email);
+
+                    let roles=data.u_user_roles;
+
+                    var u_user_roles = [];
+
+                    roles.forEach(obj=> u_user_roles.push(Object.values(obj)));
+
+                    $("#role_id").val(u_user_roles).change();
                 }
             });
 
@@ -130,7 +144,7 @@
 
                     var id = $("#hid").val();
                     var name = $("#name").val();
-                    var password = $("#password").val();
+                    var role_id =$("#role_id").val()
 
                     Swal.fire({
                         title: 'Are you sure?',
@@ -147,7 +161,7 @@
                                     'type': 'ajax',
                                     'dataType': 'json',
                                     'method': 'put',
-                                    'data' :{name:name,password:password},
+                                    'data' :{name:name,role_id:role_id},
                                     'url': 'user/'+id,
                                     'async': false,
                                     success:function(data){
