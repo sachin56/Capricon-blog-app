@@ -21,11 +21,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-Route::get('/home',[HomeController::class ,'index']);
-
-Route::get('/dashboard',[HomeController::class ,'index'])->name('dashboard');
-
 //Login routes
 Route::get('/login',[LoginController::class ,'index'])->name('login');
 Route::post('/login',[LoginController::class ,'checklogin']);
