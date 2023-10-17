@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="site-cover site-cover-sm same-height overlay single-page"
-        style="background-image: url('{{ $post->image }}');">
+        style="background-image: url('/storage/post/{{ $post->image }}');">
         <div class="container">
             <div class="row same-height justify-content-center">
                 <div class="col-md-12 col-lg-10">

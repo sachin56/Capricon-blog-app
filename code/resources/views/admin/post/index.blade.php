@@ -278,12 +278,12 @@
                             'type': 'ajax',
                             'dataType': 'json',
                             'method': 'delete',
-                            'url': 'category/'+id,
+                            'url': 'post/'+id,
                             'async': false,
                             success: function(data){
 
                             if(data){
-                                toastr.success('Category Deleted');
+                                toastr.success('Post Deleted');
                                 setTimeout(function(){
                                 location.reload();
                                 }, 1000);

@@ -48,8 +48,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/post/create',[PostController::class ,'create']);
     Route::get('/post/{id}',[PostController::class ,'show']);
     Route::post('/post/{id}',[PostController::class ,'update']);
+    Route::delete('/post/{id}',[PostController::class ,'destroy']);
 
-    //post routes
+    //Category routes
     Route::get('/category',[CategoryController::class ,'index'])->name('category');
     Route::get('/category/create',[CategoryController::class ,'create']);
     Route::post('/category',[CategoryController::class ,'store']);

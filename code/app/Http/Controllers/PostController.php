@@ -159,8 +159,11 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(){
+    public function destroy($id){
+        
+        $result = post::destroy($id);
 
+        return response()->json($result);
     }
 
 }

@@ -12,9 +12,10 @@ class WebsiteController extends Controller
 {
     public function home(){
         $posts = Post::with('category', 'user')->orderBy('created_at', 'DESC')->take(5)->get();
-        $firstPosts2 = $posts->splice(0, 2);
+        $firstPosts2 = $posts->splice(0, 1);
         $middlePost = $posts->splice(0, 1);
-        $lastPosts = $posts->splice(0);
+        $lastPosts = $posts->splice(0,1);
+        $lastPosts1 = $posts->splice(0,1);
 
         $footerPosts = Post::with('category', 'user')->inRandomOrder()->limit(4)->get();
         $firstFooterPost = $footerPosts->splice(0, 1);
@@ -25,7 +26,7 @@ class WebsiteController extends Controller
 
         $recentPosts = Post::with('category', 'user')->orderBy('created_at', 'DESC')->paginate(9);
         
-        return view('website.home', compact(['posts', 'recentPosts', 'firstPosts2', 'middlePost', 'lastPosts', 'firstFooterPost', 'firstfooterPosts2', 'lastFooterPost','categories']));
+        return view('website.index', compact(['posts', 'recentPosts', 'firstPosts2', 'middlePost', 'lastPosts','lastPosts1', 'firstFooterPost', 'firstfooterPosts2', 'lastFooterPost','categories']));
     }
 
     public function post($slug){

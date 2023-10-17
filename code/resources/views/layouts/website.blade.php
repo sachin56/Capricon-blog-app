@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
 
-    <title>Mini Blog</title>
+    <title>Heshan</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -48,39 +48,48 @@
           </div>
 
           <div class="col-4 site-logo">
-            <a href="index.html" class="text-black h2 mb-0">Mini Blog</a>
+            <a href="index.html" class="text-black h2 mb-0">Heshan Blog</a>
           </div>
 
-          <div class="col-8 text-right">
-            <nav class="site-navigation" role="navigation">
-              <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block mb-0">
-                @foreach($categories as $category)
-                <li><a href="{{ route('website.category', ['slug' => $category->slug]) }}">{{ $category->category_name }}</a></li>
-                @endforeach
-                <li class="d-none d-lg-inline-block"><a href="#" class="js-search-toggle"><span class="icon-search"></span></a></li>
-              </ul>
+          <nav class="topnav navbar navbar-expand-lg navbar-light bg-white fixed-top">
+            <div class="container">
+              <a class="navbar-brand" href="/"><strong>Heshan Blog</strong></a>
+              <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="navbar-collapse collapse" id="navbarColor02" style="">
+                <ul class="navbar-nav mr-auto d-flex align-items-center">
+                        @foreach($categories as $category)
+                            <li><a class="nav-link" href="{{ route('website.category', ['slug' => $category->slug]) }}">{{ $category->category_name }}</a></li>
+                        @endforeach
+                </ul>
+                <ul class="navbar-nav ml-auto d-flex align-items-center">
+                  <li class="nav-item highlight">
+                  <a class="nav-link" href="https://priceless-turing-4be7d7.netlify.app/">Get my Details</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
             </nav>
-            <a href="#" class="site-menu-toggle js-menu-toggle text-black d-inline-block d-lg-none"><span class="icon-menu h3"></span></a></div>
-          </div>
 
       </div>
     </header>
     
     @yield('content')
     
-    <div class="site-footer">
-      <div>
-        <ul class="row align-items-center">
-          <li><a href="https://twitter.com/julesforrest">Twitter</a></li>
-          <li><a href="https://codepen.io/julesforrest">Codepen</a></li>
-          <li><a href="mailto:julesforrest@gmail.com">Email</a></li>
-          <li><a href="https://dribbble.com/julesforrest">Dribbble</a></li>
-          <li><a href="https://github.com/julesforrest">Github</a></li>
-          <li>
-            <p>👋</p>
-          </li>
-        </ul>
+    <div class="container mt-5">
+      <footer class="bg-white border-top p-3 text-muted small">
+      <div class="row align-items-center justify-content-between">
+        <div>
+                <span class="navbar-brand mr-2"><strong>Heshan</strong></span> Copyright &copy;
+          <script>document.write(new Date().getFullYear())</script>
+           . All rights reserved.
+        </div>
+        <div>
+          Develope By  <a target="_blank" class="text-secondary font-weight-bold" href="https://www.linkedin.com/in/sachin-heshan/">Heshan</a>
+        </div>
       </div>
+      </footer>
     </div>
   </div>
 
