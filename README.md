@@ -21,9 +21,9 @@
    3 Running Seeders > php artisan db:seed
 
    ## If you want db backup add
-   please copy and pase below command database Backup is in the folder
+      please copy and pase below command database Backup is in the folder
    # Restore
-   `cat backup.sql | docker exec -i db-capricon /usr/bin/mysql -u root --password=capricon#1234 capricon`
+      `cat backup.sql | docker exec -i db-capricon /usr/bin/mysql -u root --password=capricon#1234 capricon`
 
    *NOTE DATABASE WILL BE AUTOMATICLY CREATE WHEN DOCKER UP
 
