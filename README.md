@@ -1,6 +1,6 @@
 # Exam
-   - Starting time: 15 th oct 2023
-   - Completed time: 
+   - Starting time: 16 th oct 2023
+   - Completed time: 17 th oct 2023
 
 ## This project includes 3 docker containers 
     1. Database > db-capricon
@@ -10,7 +10,7 @@
 ## Run the project 
 
    ##  Clone the project
-      `git clone `
+      `git clone https://github.com/sachin56/Capricon-blog-app.git`
 
    ## Run command   
       `docker compose up -d`
@@ -18,8 +18,14 @@
    ## Migarete table
    1 Go to php container > docker exec -it php-app-capricon sh
    2 Migarte table > php artisan migrate
+   3 Running Seeders > php artisan db:seed
 
-   NOTE DATABASE WILL BE AUTOMATICLY CREATE WHEN DOCKER UP 
+   ## If you want db backup add
+   Database Backup is in the folder
+   # Restore
+   cat backup.sql | docker exec -i db-capricon /usr/bin/mysql -u root --password=capricon#1234 capricon
+
+   *NOTE DATABASE WILL BE AUTOMATICLY CREATE WHEN DOCKER UP
 
    ## Container Down command   
       `docker compose down`   
