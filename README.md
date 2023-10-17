@@ -1,4 +1,4 @@
-# Exam
+# Capricon Exam
    - Starting time: 16 th oct 2023
    - Completed time: 17 th oct 2023
 
@@ -16,16 +16,16 @@
       `docker compose up -d`
 
    ## Migarete table
-   1 Go to php container > docker exec -it php-app-capricon sh
-   2 Migarte table > php artisan migrate
-   3 Running Seeders > php artisan db:seed
+   - Go to php container > docker exec -it php-app-capricon sh
+   - Migarte table > php artisan migrate
+   - Running Seeders > php artisan db:seed
 
    ## If you want db backup add
-      please copy and pase below command database Backup is in the folder
+   - please copy and paste the below command database Backup is in the folder
    # Restore
       `cat backup.sql | docker exec -i db-capricon /usr/bin/mysql -u root --password=capricon#1234 capricon`
 
-   *NOTE DATABASE WILL BE AUTOMATICLY CREATE WHEN DOCKER UP
+   - NOTE DATABASE WILL BE AUTOMATICLY CREATE WHEN DOCKER UP
 
    ## Container Down command   
       `docker compose down`   
