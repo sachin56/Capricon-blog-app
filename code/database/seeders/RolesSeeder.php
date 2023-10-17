@@ -14,19 +14,19 @@ class RolesSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('u_role')->insert([
+        DB::table('u_roles')->insert([
             'description' => 'Dashboard',
         ]);
 
-        DB::table('u_role')->insert([
+        DB::table('u_roles')->insert([
             'description' => 'Categories',
         ]);
-        
-        DB::table('u_role')->insert([
+
+        DB::table('u_roles')->insert([
             'description' => 'Post',
         ]);
 
-        DB::table('u_role')->insert([
+        DB::table('u_roles')->insert([
             'description' => 'User',
         ]);
     }
