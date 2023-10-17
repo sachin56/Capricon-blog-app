@@ -153,7 +153,7 @@
             </a>
           </li>
           <li class="nav-item mt-auto">
-            <a href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav-link">
+            <a href="{{ route('logout') }}"  class="nav-link">
               <i class="nav-icon fas fa-sign-out-alt"></i>
               <p>
                 Logout
