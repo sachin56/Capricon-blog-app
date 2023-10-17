@@ -133,7 +133,7 @@
                 data: null,
                 render: function(d){
                     var html = "";
-                    html+="&nbsp;<a href='post/"+d.slug+"' target='_blank' class='btn btn-sm btn-dark mr-1'> <i class='fas fa-link'></i> </a>"
+                    html+="&nbsp;<a href='post//"+d.slug+"' target='_blank' class='btn btn-sm btn-dark mr-1'> <i class='fas fa-link'></i> </a>"
                     return html;
 
                 }

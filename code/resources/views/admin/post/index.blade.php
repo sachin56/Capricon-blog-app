@@ -6,7 +6,7 @@
             <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">Add Post</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -39,7 +39,7 @@
                         </form>
                     </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-success submit" id="submit">Save changes</button>
                 </div>
             </div>
@@ -331,7 +331,7 @@
                     var html = "";
                     html+="<td><button class='btn btn-warning btn-sm edit' data='"+d.id+"' title='Edit'><i class='fas fa-edit'></i></button>";
                     html+="&nbsp;<button class='btn btn-danger btn-sm delete' data='"+d.id+"' title='Delete'><i class='fas fa-trash'></i></button>";
-                    html+="&nbsp;<a href='post/"+d.slug+"' target='_blank' class='btn btn-sm btn-dark mr-1'> <i class='fas fa-link'></i> </a>"
+                    html+="&nbsp;<a href='post//"+d.slug+"' target='_blank' class='btn btn-sm btn-dark mr-1'> <i class='fas fa-link'></i> </a>"
                     return html;
 
                 }
