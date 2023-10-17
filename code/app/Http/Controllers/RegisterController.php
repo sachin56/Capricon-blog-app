@@ -7,45 +7,38 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
     //show the page in regiter 
     public function index(){
-        return view('auth.register');
+        if(Auth::check()){
+            return redirect()->route('dashboard');
+        }else{
+            return view('auth.register');
+        }
     }
 
     //save data in register form
     public function store(Request $request){
 
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:8',
+        $request->validate([
+            'name' => 'required|string|max:250',
+            'email' => 'required|email|max:250|unique:users',
+            'password' => 'required|min:8|confirmed'
         ]);
 
-        if($validator->fails()){
-            return response()->json(['validation_error' => $validator->errors()->all()]);
-        }else{
-            try{
-                DB::beginTransaction();
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password)
+        ]);
 
-                $result = new User();
-                $result->name = $request->name;
-                $result->email = $request->email;
-                $result->password = Hash::make($request->password);//make password hash format
-
-                $result->save();
-                
-                DB::commit();
-                return redirect()->route('login');
-
-            }catch(\Throwable $th){
-                DB::rollback();
-                throw $th;
-                return response()->json(['db_error' =>'Database Error'.$th]);
-            }
-
-        }
+        $credentials = $request->only('email', 'password');
+        Auth::attempt($credentials);
+        $request->session()->regenerate();
+        return redirect()->route('dashboard')
+        ->withSuccess('You have successfully registered & logged in!');
     }
 }

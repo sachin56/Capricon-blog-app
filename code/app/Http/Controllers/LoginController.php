@@ -11,27 +11,32 @@ class LoginController extends Controller
 
     //return login view 
     public function index(){
+        if(Auth::check()){
+            return redirect()->route('dashboard');
+        }else{
             return view('auth.login');
+        }
+            
     }
 
    
    function checklogin(Request $request)
     {
-        $this->validate($request, [
-            'email'   => 'required|email',
-            'password'  => 'required|alphaNum|min:3'
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
         ]);
 
-        $user_data = array(
-            'email'  => $request->get('email'),
-            'password' => $request->get('password')
-        );
-
-        if(Auth::attempt($user_data)){
-            return redirect('/home');
-        }else{
-            return back()->with('error', 'Wrong Login Details');
+        if(Auth::attempt($credentials))
+        {
+            $request->session()->regenerate();
+            return redirect()->route('dashboard')
+                ->withSuccess('You have successfully logged in!');
         }
+
+        return back()->withErrors([
+            'email' => 'Your provided credentials do not match in our records.',
+        ])->onlyInput('email');
 
     }
 }
