@@ -161,7 +161,7 @@
             </a>
           </li>
           <li class="text-center mt-5">
-            <a href="" class="btn btn-primary text-white" target="_blank">
+            <a href="{{ route('website') }}" class="btn btn-primary text-white" target="_blank">
               <p class="mb-0">
                 View Website
               </p>
@@ -184,10 +184,10 @@
   <footer class="main-footer">
     <!-- To the right -->
     <div class="float-right d-none d-sm-inline">
-      <div class="mb-0">Developed By Zakir on <a href="https://www.youtube.com/playlist?list=PLl4v4A2HI0YixTm5AsoTu-sKxiQti4-r6">Laravel Blog Development </a>Tutorial Series</div>
+      <div class="mb-0">Developed By Heshan Munasinghe <a href="https://www.linkedin.com/in/sachin-heshan/">Laravel Blog Development </a></div>
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; {{date("Y")}} <a href="https://capricon.biz/">Capricon</a>.</strong> All rights reserved.
   </footer>
 </div>
 <!-- ./wrapper -->

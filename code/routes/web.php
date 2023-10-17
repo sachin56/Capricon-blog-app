@@ -21,6 +21,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/',[WebsiteController::class ,'home'])->name('website');
+Route::get('/post//{slug}',[WebsiteController::class ,'post'])->name('website.post');
+Route::get('/category//{slug}',[WebsiteController::class ,'category'])->name('website.category');
+Route::get('/about',[WebsiteController::class ,'about'])->name('website.about');
+
 //Login routes
 Route::get('/login',[LoginController::class ,'index'])->name('login');
 Route::post('/login',[LoginController::class ,'checklogin']);
@@ -57,10 +62,4 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/user/{id}',[UserController::class ,'show']);
     Route::put('/user/{id}',[UserController::class ,'update']);
     Route::delete('/user/{id}',[UserController::class ,'destroy']);
-
-
-    Route::get('/',[WebsiteController::class ,'home'])->name('website');
-    Route::get('/post//{slug}',[WebsiteController::class ,'post'])->name('website.post');
-    Route::get('/category//{slug}',[WebsiteController::class ,'category'])->name('website.category');
-    Route::get('/about',[WebsiteController::class ,'about'])->name('website.about');
 });
